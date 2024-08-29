@@ -19,6 +19,11 @@ vim.api.nvim_create_user_command('Format', function(args)
   require('conform').format { async = true, lsp_fallback = true, range = range }
 end, { range = true })
 
+-- create user command :Diff that runs :DiffviewOpen
+vim.api.nvim_create_user_command('Diff', function()
+  require('diffview').open { file_panel = { width = 35 } }
+end, { nargs = 0 })
+
 vim.keymap.set('n', '<leader>fm', ':Format<CR>', { desc = '[F]or[m]at' })
 
 -- launch Neotree on startup
